@@ -1,0 +1,34 @@
+<div class="appointment__container">
+    <div>
+        <h2 class="appointment__title">Asignar Turno</h2>
+        <form class="appointment__form">
+            <div class="appointment__form--input">
+                <label class="appointment__form--label" for="fecha">Fecha</label>
+                <input type="date" id="fecha" required>
+            </div>
+            <div class="appointment__form--input">
+                <label class="appointment__form--label" for="hora">Hora</label>
+                <input type="time" id="hora" required>
+            </div>
+            <div class="appointment__form--input">
+                <label class="appointment__form--label" for="mecanico">Mecanico</label>
+                <select class="appointment__form--select" id="mecanico" required>
+                    <option value="" disabled selected>Seleccione un mecánico</option>
+                    <option value="mecanico1">Mecánico 1</option>
+                    <option value="mecanico2">Mecánico 2</option>
+                    <option value="mecanico3">Mecánico 3</option>
+                </select>
+            </div>
+            <div class="appointment__form--input">
+                <label class="appointment__form--label" for="cliente">Cliente</label>
+                <select class="appointment__form--select" id="cliente" required>
+                    <option value="" disabled selected>Seleccione un cliente</option>
+                    <option value="cliente1">Cliente 1</option>
+                    <option value="cliente2">Cliente 2</option>
+                    <option value="cliente3">Cliente 3</option>
+                </select>
+            </div>
+        </form>
+        
+    </div>
+</div>

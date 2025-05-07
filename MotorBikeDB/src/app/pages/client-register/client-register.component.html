@@ -1,0 +1,14 @@
+<div class="main">
+    <app-nav-bar 
+  (toggleMechanicForm)="toggleMechanicForm()" 
+  (toggleClientForm)="toggleClientForm()">
+</app-nav-bar>
+    <div *ngIf="showClientForm && !showMechanicForm" @fadeInOut> 
+    <div class="create__container" >
+      <app-create-client (clienteChange)="clienteSeleccionado = $event"></app-create-client>
+      <app-create-moto (motoChange)="motoSeleccionada = $event"></app-create-moto>
+    </div>
+    <button type="submit" class="create__button" (click)="handleSubmit()">Guardar Cliente</button>
+    </div>
+    <app-create-mechanic *ngIf="showMechanicForm"></app-create-mechanic>
+  </div>
