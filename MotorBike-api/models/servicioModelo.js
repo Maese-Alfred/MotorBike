@@ -2,8 +2,8 @@ import sql from '../config/database.js';
 
 class ServicioModel {
     async obtenerTodos() {
-      const result = await sql.query(`SELECT * FROM servicios`);
-      return result.rows;
+      const serivicios = await sql`SELECT * FROM servicios`;
+      return serivicios;
     }
   
     async crearServicio({ nombre_servicio, descripcion_servicio, costo_estimado_servicio, duracion_aproximada_servicio }) {

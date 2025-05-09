@@ -65,6 +65,19 @@ class MotoModel {
             throw error;
         }
     }
+    async obtenerMotoPorCliente(cedula_cliente) {
+        try {
+            const result = await sql`
+                SELECT m.* FROM motos m
+                JOIN clientes c ON m.cedula_cliente = c.cedula_cliente
+                WHERE c.cedula_cliente = ${cedula_cliente}
+            `;
+            return result;
+        } catch (error) {
+            console.error('Error al obtener la moto por cliente:', error);
+            throw error;
+        }
+    }
 }
 
 export default new MotoModel();

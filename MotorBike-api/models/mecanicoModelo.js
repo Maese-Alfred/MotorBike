@@ -1,7 +1,7 @@
 import sql from '../config/database.js';
 
 class MecanicoModel {
-    async craerMecanico({nombre_mecanico, apellido_mecanico, telefono_mecanico,especialidad_mecanico,email_mecanico}) 
+    async crearMecanico({nombre_mecanico, apellido_mecanico, telefono_mecanico,especialidad_mecanico,email_mecanico}) 
     {try {
         const result = await sql`
             INSERT INTO mecanicos (nombre_mecanico, apellido_mecanico, telefono_mecanico, especialidad_mecanico, email_mecanico)

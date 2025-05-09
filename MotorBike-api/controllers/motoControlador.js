@@ -66,6 +66,20 @@ class MotoController {
             res.status(500).json({ error: 'Error al eliminar la moto' });
         }
     }
+    async obtenerMotoPorCliente(req, res) {
+        try {
+            const { cedula_cliente } = req.params;
+            const motos = await MotoModel.obtenerMotoPorCliente(cedula_cliente);
+            if (motos.length > 0) {
+                res.status(200).json(motos);
+            } else {
+                res.status(404).json({ error: 'No se encontraron motos para el cliente' });
+            }
+        } catch (error) {
+            console.error('Error al obtener las motos por cliente:', error);
+            res.status(500).json({ error: 'Error al obtener las motos por cliente' });
+        }
+    }
 }
 
 export default new MotoController();
