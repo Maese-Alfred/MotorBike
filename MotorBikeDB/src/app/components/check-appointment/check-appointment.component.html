@@ -1,0 +1,33 @@
+<div class="citas-container">
+    <h2>Listado de Citas</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Moto</th>
+          <th>Servicio</th>
+          <th>Fecha</th>
+          <th>Confirmada</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cita of citas">
+          <td>{{ cita.id }}</td>
+          <td>{{ cita.cliente?.nombre || 'Desconocido' }}</td>
+          <td>{{ cita.moto?.placa_moto || 'Sin moto' }}</td>
+          <td>{{ cita.servicio?.nombre_servicio || 'Sin servicio' }}</td>
+          <td>{{ cita.fecha_cita | date: 'short' }}</td>
+          <td>{{ cita.confirmado ? 'Sí' : 'No' }}</td>
+          <td>
+            <button *ngIf="!cita.confirmado" (click)="handleConfirmarCita(cita.id)">
+              Confirmar
+            </button>
+            <span *ngIf="cita.confirmado">✔️</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

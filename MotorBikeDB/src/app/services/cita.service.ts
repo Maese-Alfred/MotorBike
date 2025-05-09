@@ -19,7 +19,7 @@ export class CitaService {
     return this.http.get<Cita[]>(this.apiUrl);
   }
 
-  confirmarCita(id: number): Observable<Cita> {
-    return this.http.put<Cita>(`${this.apiUrl}/${id}`, { confirmado: true });
+  confirmarCita(id: number): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, {}); // cuerpo vacío
   }
 }

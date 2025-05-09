@@ -4,12 +4,7 @@ import { CreateClientComponent } from '../../components/create-client/create-cli
 import { CreateMotoComponent } from '../../components/create-moto/create-moto.component';
 import { CreateMechanicComponent } from '../../components/create-mechanic/create-mechanic.component';
 import { NgIf } from '@angular/common';
-import {
-  trigger,
-  transition,
-  style,
-  animate
-} from '@angular/animations';
+
 import { ClientService } from '../../services/client.service';
 
 
@@ -19,18 +14,8 @@ import { ClientService } from '../../services/client.service';
   templateUrl: './client-register.component.html',
   styleUrl: './client-register.component.scss',
   standalone: true,
-  animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('300ms ease-in', style({ opacity: 1 })),
-      ]),
-      transition(':leave', [
-        animate('300ms ease-out', style({ opacity: 0 })),
-      ]),
-    ]),
-  ],
 })
+
 export class ClientRegisterComponent {
   showMechanicForm = false;
   showClientForm = true; // Mostrar cliente por defecto

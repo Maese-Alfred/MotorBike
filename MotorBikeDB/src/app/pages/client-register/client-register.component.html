@@ -3,7 +3,7 @@
   (toggleMechanicForm)="toggleMechanicForm()" 
   (toggleClientForm)="toggleClientForm()">
 </app-nav-bar>
-    <div *ngIf="showClientForm && !showMechanicForm" @fadeInOut> 
+    <div *ngIf="showClientForm && !showMechanicForm"> 
     <div class="create__container" >
       <app-create-client (clienteChange)="clienteSeleccionado = $event"></app-create-client>
       <app-create-moto (motoChange)="motoSeleccionada = $event"></app-create-moto>
