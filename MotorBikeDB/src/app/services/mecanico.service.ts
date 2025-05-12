@@ -9,24 +9,28 @@ import Mecanico from '../../models/Mecanico';
 
 export class MecanicoService {
 
-  readonly apiUrl = 'http://localhost:3000/api/mecanicos';
+  readonly apiUrl = 'http://localhost:3000/api';
 
 constructor(private http: HttpClient) {}
   
 crearMecanico(mecanico: Mecanico): Observable<Mecanico> {
-    return this.http.post<Mecanico>(this.apiUrl, mecanico);
+    return this.http.post<Mecanico>(`${this.apiUrl}/mecanicos`, mecanico);
   }
 
   obtenerMecanicos(): Observable<Mecanico[]> {
-    return this.http.get<Mecanico[]>(this.apiUrl);
+    return this.http.get<Mecanico[]>(`${this.apiUrl}/mecanicos`);
   }
 
   eliminarMecanico(nombre_mecanico: string): Observable<Mecanico> {
-    return this.http.delete<Mecanico>(`${this.apiUrl}/${nombre_mecanico}`);
+    return this.http.delete<Mecanico>(`${this.apiUrl}/mecanicos/${nombre_mecanico}`);
   }
 
   actualizarMecanico(mecanico: Mecanico): Observable<Mecanico> {
-    return this.http.put<Mecanico>(`${this.apiUrl}/${mecanico.nombre_mecanico}`, mecanico);
+    return this.http.put<Mecanico>(`${this.apiUrl}/mecanicos/${mecanico.nombre_mecanico}`, mecanico);
+  }
+
+  asignarMecanico(id_orden: number, id_mecanico: number): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/mecanicos/asignar/${id_orden}/${id_mecanico}`, {});
   }
 
 }

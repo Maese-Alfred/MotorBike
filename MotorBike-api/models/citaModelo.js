@@ -41,10 +41,10 @@ class CitaModel {
 
         // Crear orden de servicio
         const ordenResult = await sql`
-          INSERT INTO ordenes_servicio (placa_moto, id_servicio, fecha_ingreso_orden, estado_orden, id_cita)
-          VALUES (${placa_moto}, ${id_servicio}, NOW(), 'pendiente', ${id_cita})
-          RETURNING *
-        `;
+  INSERT INTO ordenes_servicio (placa_moto, id_servicio, fecha_ingreso_orden, estado_orden)
+  VALUES (${placa_moto}, ${id_servicio}, NOW(), 'pendiente')
+  RETURNING *
+`;
 
         return ordenResult[0];
       });
