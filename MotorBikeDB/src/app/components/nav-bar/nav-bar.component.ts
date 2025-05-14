@@ -1,21 +1,25 @@
-import { NgIf } from '@angular/common';
-import { Component,Output, EventEmitter } from '@angular/core';
+import { Component, Inject, Output, EventEmitter, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, NgIf } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [NgIf,RouterLink, RouterLinkActive],
+  standalone: true,
+  imports: [NgIf, RouterLink, RouterLinkActive],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
-
   @Output() toggleMechanicForm = new EventEmitter<void>();
-
   @Output() toggleClientForm = new EventEmitter<void>();
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   get isClientRegisterRoute(): boolean {
-    return window.location.pathname === '/client-register';
+    if (isPlatformBrowser(this.platformId)) {
+      return window.location.pathname === '/client-register';
+    }
+    return false;
   }
 
   onClickMechanic() {

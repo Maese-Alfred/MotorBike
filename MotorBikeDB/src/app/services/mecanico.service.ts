@@ -29,8 +29,10 @@ crearMecanico(mecanico: Mecanico): Observable<Mecanico> {
     return this.http.put<Mecanico>(`${this.apiUrl}/mecanicos/${mecanico.nombre_mecanico}`, mecanico);
   }
 
-  asignarMecanico(id_orden: number, id_mecanico: number): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/mecanicos/asignar/${id_orden}/${id_mecanico}`, {});
-  }
-
+  asignarMecanico(id_mecanico: number, id_orden: number): Observable<any> {
+  return this.http.post<any>(`${this.apiUrl}/mecanicos/ordenes/asignar`, {
+    id_mecanico,
+    id_orden
+  });
+}
 }

@@ -78,6 +78,7 @@ class HistorialModel {
       throw error;
     }
   }
+  
   async obtenerHistorialPorMecanico(id_mecanico) {
     try {
       const result = await sql`
@@ -122,6 +123,7 @@ class HistorialModel {
       throw error;
     }
 }
+  
 }
 
 export default new HistorialModel();

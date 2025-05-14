@@ -65,7 +65,7 @@ class MecanicoModel {
       throw error;
     }
   }
-  async asignarMecanico(id_orden, id_mecanico) {
+  async asignarMecanico(id_mecanico, id_orden) {
     try {
       const result = await sql`
       INSERT INTO mecanicos_ordenes_servicios (id_mecanico, id_orden)

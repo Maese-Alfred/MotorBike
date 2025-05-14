@@ -38,11 +38,14 @@ export class AssignMechanicComponent implements OnInit {
   }
 
   asignarMecanico() {
+    console.log('Orden seleccionada:', this.ordenSeleccionada);
+    console.log('Mecanico seleccionado:', this.mecanicoSeleccionado);
     if (this.ordenSeleccionada && this.mecanicoSeleccionado) {
-      this.mecanicoService.asignarMecanico(this.ordenSeleccionada, this.mecanicoSeleccionado)
+      this.mecanicoService.asignarMecanico( this.mecanicoSeleccionado,this.ordenSeleccionada)
         .subscribe(
           response => {
             console.log('Mecanico asignado:', response);
+            alert('Mecanico asignado exitosamente.');
             this.obtenerOrdenes();
           },
           error => {

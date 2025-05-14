@@ -26,6 +26,24 @@ class OrdenModel {
         );
         return result.rows[0];
       }
+      
+      async obtenerOrdenesCompletadas() {
+        try{
+          const result = await sql `
+            SELECT os.*, c.nombre_cliente, m.marca_moto, s.nombre_servicio
+            FROM ordenes_servicio os
+            JOIN motos m ON os.placa_moto = m.placa_moto
+            JOIN clientes c ON m.cedula_cliente = c.cedula_cliente
+            JOIN servicios s ON os.id_servicio = s.id_servicio
+            WHERE os.estado_orden = 'completado'
+            ORDER BY os.fecha_entrega_orden DESC
+          `;
+          return result;
+        }catch (error){
+          console.error('Error al obtener las ordenes completadas:', error);
+          throw error;
+        }
+      }
 }
 
 export default new OrdenModel;

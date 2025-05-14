@@ -1,3 +1,4 @@
+
 import mecanicoModel from "../models/mecanicoModelo.js";
 
 class MecanicoControlador {
@@ -70,7 +71,7 @@ class MecanicoControlador {
   async asignarMecanico(req, res) {
     try {
       const { id_orden, id_mecanico } = req.body;
-      const result = await CitaModel.asignarMecanico(id_orden, id_mecanico);
+      const result = await mecanicoModel.asignarMecanico(id_mecanico,id_orden);
       res.status(200).json(result);
     } catch (error) {
       console.error("Error en el controlador:", error);

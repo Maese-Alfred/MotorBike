@@ -11,7 +11,8 @@ class HistorialController {
         }
     }
     async registrarHistorialMantenimiento(req, res){
-        const { id_orden, detalles_historial } = req.body;
+        const { id_orden } = req.params;
+        const { detalles_historial } = req.body;
         try{
             const nuevoHistorial = await HistorialModel.registrarHistorialMantenimiento({ id_orden, detalles_historial });
             res.status(201).json(nuevoHistorial);

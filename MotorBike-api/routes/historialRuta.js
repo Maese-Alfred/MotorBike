@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Rutas para el historial de rutas
 router.get('/', HistorialController.obtenerHistorialCompleto); // Obtener todos los historiales de rutas
-router.post('/', HistorialController.registrarHistorialMantenimiento); // Registrar un nuevo historial de mantenimiento
+router.post('/:id_orden/', HistorialController.registrarHistorialMantenimiento); // Registrar un nuevo historial de mantenimiento
 router.post('/trabajo-mecanico', HistorialController.registrarTrabajoMecanico); // Registrar un nuevo trabajo mecánico
 router.get('/mecanico/:id_mecanico', HistorialController.obtenerHistorialPorMecanico); // Obtener historial por ID de mecánico
 

@@ -23,6 +23,17 @@ class OrdenController {
             res.status(500).json({ error: 'Error al actualizar el estado de la orden' });
         }
     }
+
+    async obtenerOrdenesCompletadas(req, res) {
+        try {
+            const ordenesCompletadas = await ordenModel.obtenerOrdenesCompletadas();
+            res.status(200).json(ordenesCompletadas);
+            console.log(ordenesCompletadas);
+        } catch (error) {
+            console.error('Error al obtener las órdenes completadas:', error);
+            res.status(500).json({ error: 'Error al obtener las órdenes completadas' });
+        }
+    }
 }
 
 export default new OrdenController();

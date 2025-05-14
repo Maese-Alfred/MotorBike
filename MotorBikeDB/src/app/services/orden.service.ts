@@ -16,7 +16,11 @@ export class OrdenService {
     return this.http.get<any[]>(`${this.apiUrl}/ordenes`);
   }
 
-  actualizarEstaado(id_orden:number, nuevoEstado:Orden) : Observable<any> {
+  actualizarEstado(id_orden:number, nuevoEstado:Orden) : Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/ordenes/${id_orden}`, { estado: nuevoEstado });
+  }
+
+  obtenerOrdenesCompletas(): Observable<Orden[]> {
+    return this.http.get<Orden[]>(`${this.apiUrl}/ordenes/completadas`);
   }
 }
