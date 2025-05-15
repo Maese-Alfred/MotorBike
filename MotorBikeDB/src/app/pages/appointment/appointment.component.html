@@ -1,7 +1,15 @@
 <div class="main">
-<app-nav-bar> </app-nav-bar>
-<app-create-appointment></app-create-appointment>
-<app-check-appointment></app-check-appointment>
-<app-assign-mechanic></app-assign-mechanic>
-<app-registar-trabajo-mecanico></app-registar-trabajo-mecanico>
+  <app-nav-bar></app-nav-bar>
+
+  <button (click)="toggleComponent('create')">Crear Cita</button>
+  <app-create-appointment *ngIf="showCreate" />
+
+  <button (click)="toggleComponent('check')">Revisar Cita</button>
+  <app-check-appointment *ngIf="showCheck" />
+
+  <button (click)="toggleComponent('assign')">Asignar Mecánico</button>
+  <app-assign-mechanic *ngIf="showAssign" />
+
+  <button (click)="toggleComponent('register')">Registrar Trabajo</button>
+  <app-registar-trabajo-mecanico *ngIf="showRegister" />
 </div>

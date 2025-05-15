@@ -1,0 +1,141 @@
+.registrar__container {
+    padding: 2rem; /* Aumenté el padding para más espacio interno */
+    min-height: auto; /* Ajusté la altura mínima a automático para que se adapte al contenido */
+    background: linear-gradient(to bottom, #f0ad4e, #e68a00); /* Cambié ligeramente los colores del degradado */
+    border-radius: 0.5rem; /* Aumenté el radio del borde */
+    width: 70%; /* Reduje un poco el ancho para centrar mejor en pantallas más grandes */
+    margin: 5vh auto; /* Reduje el margen superior e inferior */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Añadí una sombra sutil */
+}
+
+.registrar__title {
+    font-size: 2.5rem; /* Aumenté el tamaño del título */
+    font-weight: 700; /* Hice el título más bold */
+    text-align: center;
+    margin-bottom: 2.5rem; /* Aumenté el margen inferior del título */
+    color: #333; /* Cambié el color del título a un gris oscuro */
+}
+
+.registrar__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Aumenté el espacio entre los elementos del formulario */
+    margin-top: 0; /* Eliminé el margen superior innecesario */
+}
+
+.registrar__form--input {
+    display: flex;
+    flex-direction: column; /* Cambié a columna para apilar etiqueta e input */
+    gap: 0.5rem;
+}
+
+.registrar__form--input label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #555; /* Cambié el color de la etiqueta */
+}
+
+.registrar__form--input input,
+.registrar__form--input select {
+    padding: 0.8rem; /* Aumenté el padding */
+    border: 1px solid #ccc; /* Añadí un borde más visible */
+    border-radius: 0.3rem;
+    transition: border-color 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Añadí una sombra interior */
+    font-size: 1rem;
+}
+
+.registrar__form--input input:focus,
+.registrar__form--input select:focus {
+    outline: none;
+    border-color: #e68a00; /* Cambié el color del borde al enfocar */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 5px rgba(230, 138, 0, 0.5); /* Añadí una sombra al enfocar */
+}
+
+/* Estilos para agrupar fecha inicio y fin */
+.registrar__form--group {
+    display: flex;
+    gap: 1rem; /* Espacio entre los campos de fecha */
+}
+
+.registrar__form--group-item {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Permite que los campos de fecha compartan el espacio */
+    gap: 0.5rem;
+}
+
+.registrar__form--group-item label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.registrar__form--group-item input[type="date"] {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    transition: border-color 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+}
+
+.registrar__form--group-item input[type="date"]:focus {
+    outline: none;
+    border-color: #e68a00;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 5px rgba(230, 138, 0, 0.5);
+}
+
+/* Estilos para los textarea */
+.registrar__form--input-textarea {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.registrar__form--input-textarea label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.registrar__form--input-textarea textarea {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    line-height: 1.5; /* Mejora la legibilidad del texto */
+    transition: border-color 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    min-height: 100px;
+}
+
+.registrar__form--input-textarea textarea:focus {
+    outline: none;
+    border-color: #e68a00;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 5px rgba(230, 138, 0, 0.5);
+}
+
+/* Estilos para el botón */
+.registrar__submit {
+    padding: 1rem 2rem; /* Aumenté el padding del botón */
+    border: none;
+    border-radius: 0.5rem; /* Aumenté el radio del borde del botón */
+    background-color: #391c0f;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 2rem; /* Aumenté el margen superior del botón */
+}
+
+.registrar__submit:hover {
+    background-color: #2a140a; /* Oscurecí el color al pasar el ratón */
+    transform: scale(1.02); /* Ligeramente más grande al pasar el ratón */
+}
+
+.registrar__submit:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(57, 28, 15, 0.7); /* Añadí una sombra al enfocar el botón */
+}

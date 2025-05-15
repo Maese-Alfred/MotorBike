@@ -1,0 +1,52 @@
+.citas__container {
+    padding: 1rem;
+    min-height: 60vh;
+    background: linear-gradient(to bottom, #d6a12d, darken(#fa9f27, 15%));
+    border-radius: 0.3rem;
+    width: 80%;
+    margin: 10vh auto;
+    overflow-x: auto; /* Agregamos scroll horizontal si la tabla se desborda */
+}
+
+.citas__title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.citas__table {
+    display: table; /* Cambiamos a display: table para usar table-layout */
+    border-collapse: collapse; /* Opcional: Colapsa los bordes de las celdas */
+    margin-top: 2rem;
+    table-layout: fixed; /* Forzamos un layout fijo para controlar el ancho */
+}
+
+.citas__table--header,
+.citas__table--body {
+    display: table-row-group; /* Mantenemos la estructura semántica */
+}
+
+.citas__table--header--row {
+    background-color: #412b03;
+    color: #fff;
+}
+.citas__table--header--row,
+.citas__table--body tr {
+    display: table-row;
+}
+
+.citas__table--header--row th,
+.citas__table--body tr td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; 
+}
+
+/* Opcional: Define anchos para las columnas si usas table-layout: fixed */
+.citas__table--header--row th:nth-child(1) { width: 5%; } /* ID */
+.citas__table--header--row th:nth-child(2) { width: 20%; } /* Cliente */
+.citas__table--header--row th:nth-child(3) { width: 15%; } /* Moto */
+.citas__table--header--row th:nth-child(4) { width: 20%; } /* Servicio */
+.citas__table--header--row th:nth-child(5) { width: 10%; } /* Fecha */
+.citas__table--header--row th:nth-child(6) { width: 15%; } /* Confirmada */
+.citas__table--header--row th:nth-child(7) { width: 15%; } /* Acciones */

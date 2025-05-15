@@ -1,43 +1,47 @@
-<form (ngSubmit)="registrarTrabajo()" #form="ngForm" class="registrar__form">
-  <div>
-    <label for="historial">Seleccionar Historial:</label>
-    <select id="historial" name="historial" [(ngModel)]="historialSeleccionado" required>
-      <option value="" disabled selected>-- Seleccionar Historial --</option>
-      <option *ngFor="let h of historiales" [value]="h.id_historial">
-        Historial #{{ h.id_historial }} (Orden #{{ h.id_orden }})
-      </option>
-    </select>
-  </div>
+<div class="registrar__container">
+    <h2 class="registrar__title">Registrar trabajo</h2>
+    <form (ngSubmit)="registrarTrabajo()" #form="ngForm" class="registrar__form">
+        <div class="registrar__form--input">
+            <label for="historial">Seleccionar Historial:</label>
+            <select id="historial" name="historial" [(ngModel)]="historialSeleccionado" required>
+                <option value="" disabled selected>-- Seleccionar Historial --</option>
+                <option *ngFor="let h of historiales" [value]="h.id_historial">
+                    Historial #{{ h.id_historial }} (Orden #{{ h.id_orden }})
+                </option>
+            </select>
+        </div>
 
-  <div>
-    <label for="mecanico">Seleccionar Mecánico:</label>
-    <select id="mecanico" name="mecanico" [(ngModel)]="mecanicoSeleccionado" required>
-      <option value="" disabled selected>-- Seleccionar Mecánico --</option>
-      <option *ngFor="let m of mecanicos" [value]="m.id_mecanico">
-        {{ m.nombre_mecanico }} {{ m.apellido_mecanico }}
-      </option>
-    </select>
-  </div>
+        <div class="registrar__form--input">
+            <label for="mecanico">Seleccionar Mecánico:</label>
+            <select id="mecanico" name="mecanico" [(ngModel)]="mecanicoSeleccionado" required>
+                <option value="" disabled selected>-- Seleccionar Mecánico --</option>
+                <option *ngFor="let m of mecanicos" [value]="m.id_mecanico">
+                    {{ m.nombre_mecanico }} {{ m.apellido_mecanico }}
+                </option>
+            </select>
+        </div>
 
-  <div>
-    <label for="fechaInicio">Fecha Inicio:</label>
-    <input type="date" id="fechaInicio" name="fechaInicio" [(ngModel)]="fechaInicio" required />
-  </div>
+        <div class="registrar__form--group">
+            <div class="registrar__form--group-item">
+                <label for="fechaInicio">Fecha Inicio:</label>
+                <input type="date" id="fechaInicio" name="fechaInicio" [(ngModel)]="fechaInicio" required />
+            </div>
+            <div class="registrar__form--group-item">
+                <label for="fechaFin">Fecha Fin:</label>
+                <input type="date" id="fechaFin" name="fechaFin" [(ngModel)]="fechaFin" required />
+            </div>
+        </div>
 
-  <div>
-    <label for="fechaFin">Fecha Fin:</label>
-    <input type="date" id="fechaFin" name="fechaFin" [(ngModel)]="fechaFin" required />
-  </div>
+        <div class="registrar__form--input-textarea">
+            <label for="descripcion">Descripción del trabajo:</label>
+            <textarea id="descripcion" name="descripcion" [(ngModel)]="descripcion" required></textarea>
+        </div>
 
-  <div>
-    <label for="descripcion">Descripción del trabajo:</label>
-    <textarea id="descripcion" name="descripcion" [(ngModel)]="descripcion" required></textarea>
-  </div>
+        <div class="registrar__form--input-textarea">
+            <label for="detalles">Detalles adicionales:</label>
+            <textarea id="detalles" name="detalles" [(ngModel)]="detallesAdicionales"></textarea>
+        </div>
 
-  <div>
-    <label for="detalles">Detalles adicionales:</label>
-    <textarea id="detalles" name="detalles" [(ngModel)]="detallesAdicionales"></textarea>
-  </div>
-
-  <button type="submit">Registrar Trabajo</button>
-</form>
+        <button type="submit" class="registrar__submit">Registrar Trabajo</button>
+    </form>
+</div>

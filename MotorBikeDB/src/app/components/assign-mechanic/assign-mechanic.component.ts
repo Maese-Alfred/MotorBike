@@ -37,7 +37,7 @@ export class AssignMechanicComponent implements OnInit {
     });
   }
 
-  asignarMecanico() {
+  asignarMecanico(){ 
     console.log('Orden seleccionada:', this.ordenSeleccionada);
     console.log('Mecanico seleccionado:', this.mecanicoSeleccionado);
     if (this.ordenSeleccionada && this.mecanicoSeleccionado) {

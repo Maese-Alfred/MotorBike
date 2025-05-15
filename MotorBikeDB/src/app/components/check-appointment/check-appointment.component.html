@@ -1,9 +1,9 @@
-<div class="citas-container">
-  <h2>Listado de Citas</h2>
+<div class="citas__container">
+  <h2 class="citas__title">Listado de Citas</h2>
 
-  <table>
-    <thead>
-      <tr>
+  <table class="citas__table">
+    <thead class="citas__table--header">
+      <tr class="citas__table--header--row">
         <th>ID</th>
         <th>Cliente</th>
         <th>Moto</th>
@@ -13,7 +13,7 @@
         <th>Acciones</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="citas__table--body">
       <tr *ngFor="let cita of citas">
         <td>{{ cita.id_cita }}</td>
         <td>{{ cita.nombre_cliente }} {{ cita.apellido_cliente }}</td>

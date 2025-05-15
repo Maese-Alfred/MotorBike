@@ -1,5 +1,7 @@
+<div class="registrar__container">
+  <h2 class="registrar__title">Registrar Detalles</h2>
 <form class="registrar__form" (ngSubmit)="handleSubmit()" #form="ngForm">
-  <div>
+  <div class="registrar__form--input">
     <label for="ordenSeleccionada">Seleccionar Orden:</label>
     <select id="ordenSeleccionada" name="ordenSeleccionada" [(ngModel)]="ordenSeleccionada" required>
       <option value="" disabled selected>-- Seleccionar Orden --</option>
@@ -9,10 +11,11 @@
     </select>
   </div>
 
-  <div>
+  <div class="registrar__form--input">
     <label for="detallesHistorial">Detalles del mantenimiento:</label>
     <textarea id="detallesHistorial" name="detallesHistorial" [(ngModel)]="detallesHistorial" required></textarea>
   </div>
 
-  <button type="submit">Registrar Historial</button>
+  <button class="registrar__submit" type="submit">Registrar Historial</button>
 </form>
+</div>

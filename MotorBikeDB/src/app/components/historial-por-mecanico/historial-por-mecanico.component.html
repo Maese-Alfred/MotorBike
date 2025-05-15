@@ -2,6 +2,7 @@
   <h2 class="historial__title">Historial por Mecánico</h2>
 
   <form (ngSubmit)="buscarHistorialPorMecanico()" #form="ngForm" class="historial__form">
+    <div class="historial__form--label">
     <label for="idMecanico">ID del Mecánico:</label>
     <input
       type="number"
@@ -11,12 +12,12 @@
       [(ngModel)]="idMecanico"
     />
     <button type="submit">Buscar</button>
+    </div>
   </form>
-
   <div *ngIf="trabajos.length > 0" class="historial__table">
-    <table>
-      <thead>
-        <tr>
+    <table class="historial__table">
+      <thead class="historial__table--header">
+        <tr class="historial__table--header--row">
           <th>ID Trabajo</th>
           <th>ID Historial</th>
           <th>ID Mecánico</th>
@@ -25,8 +26,7 @@
           <th>Descripción</th>
           <th>Detalles Adicionales</th>
         </tr>
-      </thead>
-      <tbody>
+      <tbody class="historial__table--body">
         <tr *ngFor="let trabajo of trabajos">
           <td>{{ trabajo.id_trabajo_mecanico }}</td>
           <td>{{ trabajo.id_historial }}</td>

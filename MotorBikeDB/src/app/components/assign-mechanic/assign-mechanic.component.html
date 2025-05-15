@@ -1,5 +1,6 @@
-<form>
-  <div>
+<div class="assign__container">
+<form class="assign__form">
+  <div class="assign__form--label">
     <label for="ordenSeleccionada">Seleccionar Orden:</label>
     <select id="ordenSeleccionada" name="ordenSeleccionada" [(ngModel)]="ordenSeleccionada">
       <option value="" disabled selected>-- Seleccionar Orden --</option>
@@ -9,7 +10,7 @@
     </select>
   </div>
 
-  <div>
+  <div class="assign__form--label">
     <label for="mecanicoSeleccionado">Seleccionar Mecánico:</label>
     <select id="mecanicoSeleccionado" name="mecanicoSeleccionado" [(ngModel)]="mecanicoSeleccionado">
       <option value="" disabled selected>-- Seleccionar Mecánico --</option>
@@ -19,5 +20,6 @@
     </select>
   </div>
 
-  <button type="button" (click)="asignarMecanico()">Asignar Mecánico</button>
+  <button class="form__button" type="button" (click)="asignarMecanico()">Asignar Mecánico</button>
 </form>
+</div>
