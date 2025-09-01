@@ -6,9 +6,10 @@ const router = Router();
 
 // Rutas para la gestión de usuarios
 router.post('/crear', UsuarioController.crearUsuario); // Crear un nuevo usuario
+router.get('/roles/obtener', UsuarioController.obtenerRoles); // Obtener todos los roles
 router.get('/obtener', UsuarioController.obtenerUsuarios); // Obtener todos los usuarios
 router.post('/obtenerPorEmail', UsuarioController.obtenerUsuarioPorEmail, verifyToken ); // Obtener un usuario por email y contraseña
-router.post('/actualizar', UsuarioController.actualizarUsuario); // Actualizar un usuario
+router.put('/actualizar/:id_usuario', UsuarioController.actualizarUsuario); // Actualizar un usuario
 router.delete('/eliminar/:id_usuario', UsuarioController.eliminarUsuario); // Eliminar un usuario por ID
 
 export default router;

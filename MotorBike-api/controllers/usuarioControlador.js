@@ -55,6 +55,17 @@ class UsuarioController {
     }
   }
 
+  async obtenerRoles(req, res) {
+    try {
+      const roles = await usuarioModel.getRoles();
+      res.status(200).json(roles);
+    } catch (error) {
+      console.error('Error al obtener roles en el controlador:', error);
+      res.status(500).json({ error: 'Error al obtener roles' });
+    }
+  }
+  
+
   async eliminarUsuario(req, res) {
     try {
       const { id_usuario } = req.params; // Asume que el ID del usuario viene en los parámetros de la URL

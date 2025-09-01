@@ -20,4 +20,8 @@ export class UserService {
   getUsuarios(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/usuarios/obtener`);
   }
+
+  getRoles(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/roles/obtener`);
+  }
 }
