@@ -7,7 +7,7 @@ import TrabajoMecanico from '../../models/TrabajoMecanico';
   providedIn: 'root'
 })
 export class TrabajoMecanicoService {
-  private apiUrl = 'http://localhost:3000/api'; // ajusta si tu backend usa otra ruta
+  private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) {}
 

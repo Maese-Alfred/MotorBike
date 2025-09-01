@@ -1,43 +1,130 @@
 <div class="register__container">
-    <div class="register__form--container">
-      <h2 class="register__title">Register</h2>
-      <form class="register__form">
-        <div class="register__form--input">
-          <label class="register__form--label" for="password">Password:</label>
-          <input type="password" id="password">
-        </div>
-  
-        <div class="register__form--input">
-          <label class="register__form--label" for="confirmPassword">Confirm Password:</label>
-          <input type="password" id="confirmPassword">
-        </div>
-  
-        <div class="register__form--input">
-          <label class="register__form--label" for="email">Email:</label>
-          <input type="email" id="email">
-        </div>
-  
-        <div class="register__form--input">
-          <label class="register__form--label" for="firstName">First Name:</label>
-          <input type="text" id="firstName">
-        </div>
-  
-        <div class="register__form--input">
-          <label class="register__form--label" for="lastName">Last Name:</label>
-          <input type="text" id="lastName">
-        </div>
-  
-        <div class="register__form--input">
-          <label class="register__form--label" for="phone">Phone:</label>
-          <input type="tel" id="phone">
-        </div>
-  
-        <div class="register__form--input">
-          <label class="register__form--label" for="rol">Rol:</label>
-          <input type="text" id="rol">
-        </div>
-  
-        <button type="submit" class="register__button">Register</button>
-      </form>
+  <div class="register__form--container">
+    <h2 class="register__title">Registrarse</h2>
+    
+    <!-- Mensaje de error -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
     </div>
+
+    <form class="register__form" (ngSubmit)="handleSubmit()" #form="ngForm">
+      <!-- Email -->
+      <div class="register__form--input">
+        <label for="email">Email:</label>
+        <input 
+          type="email" 
+          id="email" 
+          [(ngModel)]="newUser.email_usuario" 
+          name="email_usuario"
+          required
+          email
+          #email="ngModel">
+        <div *ngIf="email.invalid && email.touched" class="input-error">
+          <span *ngIf="email.errors?.['required']">Email es requerido</span>
+          <span *ngIf="email.errors?.['email']">Formato de email inválido</span>
+        </div>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="register__form--input">
+        <label for="password">Contraseña:</label>
+        <div class="password-container">
+          <input 
+            [type]="showPassword ? 'text' : 'password'" 
+            id="password" 
+            [(ngModel)]="password" 
+            name="password"
+            required
+            minlength="6"
+            #passwordInput="ngModel">
+          <button type="button" class="toggle-password" (click)="togglePasswordVisibility('password')">
+            <i class="icon">{{ showPassword ? '🙈' : '👁️' }}</i>
+          </button>
+        </div>
+        <div *ngIf="passwordInput.invalid && passwordInput.touched" class="input-error">
+          <span *ngIf="passwordInput.errors?.['required']">Contraseña es requerida</span>
+          <span *ngIf="passwordInput.errors?.['minlength']">Mínimo 6 caracteres</span>
+        </div>
+        <small>Debe tener al menos 6 caracteres, incluyendo mayúsculas, minúsculas, números y caracteres especiales</small>
+      </div>
+
+      <!-- Confirmar Contraseña -->
+      <div class="register__form--input">
+        <label for="confirmPassword">Confirmar Contraseña:</label>
+        <div class="password-container">
+          <input 
+            [type]="showConfirmPassword ? 'text' : 'password'" 
+            id="confirmPassword" 
+            [(ngModel)]="confirmPassword" 
+            name="confirmPassword"
+            required
+            #confirmPasswordInput="ngModel">
+          <button type="button" class="toggle-password" (click)="togglePasswordVisibility('confirmPassword')">
+            <i class="icon">{{ showConfirmPassword ? '🙈' : '👁️' }}</i>
+          </button>
+        </div>
+        <div *ngIf="confirmPasswordInput.invalid && confirmPasswordInput.touched" class="input-error">
+          <span *ngIf="confirmPasswordInput.errors?.['required']">Confirmar contraseña es requerido</span>
+        </div>
+        <div *ngIf="password && confirmPassword && !validatePasswordMatch()" class="input-error">
+          <span>Las contraseñas no coinciden</span>
+        </div>
+      </div>
+
+      <!-- Nombre -->
+      <div class="register__form--input">
+        <label for="firstName">Nombre:</label>
+        <input 
+          type="text" 
+          id="firstName" 
+          [(ngModel)]="newUser.nombre_usuario" 
+          name="nombre_usuario"
+          required
+          minlength="2"
+          #firstName="ngModel">
+        <div *ngIf="firstName.invalid && firstName.touched" class="input-error">
+          <span *ngIf="firstName.errors?.['required']">Nombre es requerido</span>
+          <span *ngIf="firstName.errors?.['minlength']">Mínimo 2 caracteres</span>
+        </div>
+      </div>
+
+      <!-- Apellido -->
+      <div class="register__form--input">
+        <label for="lastName">Apellido:</label>
+        <input 
+          type="text" 
+          id="lastName" 
+          [(ngModel)]="newUser.apellido_usuario" 
+          name="apellido_usuario"
+          required
+          minlength="2"
+          #lastName="ngModel">
+        <div *ngIf="lastName.invalid && lastName.touched" class="input-error">
+          <span *ngIf="lastName.errors?.['required']">Apellido es requerido</span>
+          <span *ngIf="lastName.errors?.['minlength']">Mínimo 2 caracteres</span>
+        </div>
+      </div>
+
+      <!-- Teléfono -->
+      <div class="register__form--input">
+        <label for="phone">Teléfono:</label>
+        <input 
+          type="tel" 
+          id="phone" 
+          [(ngModel)]="newUser.telefono_usuario" 
+          name="telefono_usuario"
+          #phone="ngModel">
+        <div *ngIf="phone.invalid && phone.touched" class="input-error">
+          <span *ngIf="phone.errors?.['pattern']">Teléfono no válido (solo números, 7-15 dígitos)</span>
+        </div>
+      </div>
+
+      <button 
+        type="submit" 
+        class="register__button" 
+        [disabled]="form.invalid || isLoading || (password && confirmPassword && !validatePasswordMatch())">
+        {{ isLoading ? 'Registrando...' : 'Registrarse' }}
+      </button>
+    </form>
   </div>
+</div>

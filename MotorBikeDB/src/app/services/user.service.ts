@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
-import User from '../../models/User';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { User } from '../../models/User';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  user: User[];
+  private apiUrl = 'http://localhost:3000/api';
 
-  constructor() { 
-    this.user = [
-      {
-        email: '',
-        nombre: '',
-        apellido: '',
-        password: '',
-        id_rol: 0,
-  }]
-}
+  constructor(private http: HttpClient) {}
+
+  registrarUsuario(usuario: User): Observable<User> {
+    console.log('Registrando usuario:', usuario);
+    return this.http.post<User>(`${this.apiUrl}/usuarios/crear`, usuario);
+  }
+
+  getUsuarios(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/usuarios/obtener`);
+  }
 }
