@@ -1,0 +1,59 @@
+<div class="citas-recientes">
+  <h2>Citas Recientes</h2>
+
+  <!-- 🔹 Citas de hoy -->
+  <div class="citas-dia">
+    <h3>Hoy</h3>
+    <table *ngIf="citasHoy.length > 0; else noHoy">
+      <thead>
+        <tr>
+          <th>Cédula Cliente</th>
+          <th>Placa Moto</th>
+          <th>Servicio</th>
+          <th>Fecha Cita</th>
+          <th>Confirmado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cita of citasHoy">
+          <td>{{ cita.cedula_cliente }}</td>
+          <td>{{ cita.placa_moto }}</td>
+          <td>{{ cita.id_servicio }}</td>
+          <td>{{ cita.fecha_cita | date:'short' }}</td>
+          <td>{{ cita.confirmado ? 'Sí' : 'No' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #noHoy>
+      <p>No hay citas para hoy.</p>
+    </ng-template>
+  </div>
+
+  <!-- 🔹 Citas de mañana -->
+  <div class="citas-dia">
+    <h3>Mañana</h3>
+    <table *ngIf="citasManana.length > 0; else noManana">
+      <thead>
+        <tr>
+          <th>Cédula Cliente</th>
+          <th>Placa Moto</th>
+          <th>Servicio</th>
+          <th>Fecha Cita</th>
+          <th>Confirmado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cita of citasManana">
+          <td>{{ cita.cedula_cliente }}</td>
+          <td>{{ cita.placa_moto }}</td>
+          <td>{{ cita.id_servicio }}</td>
+          <td>{{ cita.fecha_cita | date:'short' }}</td>
+          <td>{{ cita.confirmado ? 'Sí' : 'No' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #noManana>
+      <p>No hay citas para mañana.</p>
+    </ng-template>
+  </div>
+</div>

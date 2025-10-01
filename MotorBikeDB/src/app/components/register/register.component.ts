@@ -73,7 +73,7 @@ export class RegisterComponent {
       }
 
       console.log('Usuario registrado correctamente:', fbUser.uid);
-      this.router.navigate(['/client-register']);
+      this.router.navigate(['/invitado']);
 
     } catch (error: any) {
       this.errorMessage = this.getErrorMessage(error.code);
