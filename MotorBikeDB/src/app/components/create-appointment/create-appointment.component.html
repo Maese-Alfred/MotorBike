@@ -7,9 +7,11 @@
         <label class="appointment__form--label" for="cliente">Cliente</label>
         <select
           class="appointment__form--select"
-          [(ngModel)]="cita.cedula_cliente" name="cliente"
+          [(ngModel)]="cita.cedula_cliente"
+          name="cliente"
           id="cliente"
-          (change)="filtrarMotos(cita.cedula_cliente)" required
+          (change)="filtrarMotos(cita.cedula_cliente)"
+          required
         >
           <option value="" disabled selected>Seleccione un cliente</option>
           <option *ngFor="let cliente of clientes" [value]="cliente.cedula_cliente">
@@ -29,10 +31,7 @@
           required
         >
           <option value="" disabled selected>Seleccione una moto</option>
-          <option
-            *ngFor="let moto of motosClienteSeleccionado"
-            [value]="moto.placa_moto"
-          >
+          <option *ngFor="let moto of motosClienteSeleccionado" [value]="moto.placa_moto">
             {{ moto.placa_moto }}
           </option>
         </select>
@@ -63,6 +62,8 @@
           id="fecha"
           name="fecha"
           [(ngModel)]="cita.fecha"
+          [min]="minDate"
+          (change)="onFechaChange()"
           required
         />
       </div>
@@ -70,13 +71,18 @@
       <!-- Hora -->
       <div class="appointment__form--input">
         <label class="appointment__form--label" for="hora">Hora</label>
-        <input
-          type="time"
+        <select
+          class="appointment__form--select"
           id="hora"
           name="hora"
           [(ngModel)]="cita.hora"
           required
-        />
+        >
+          <option value="" disabled selected>Seleccione una hora</option>
+          <option *ngFor="let hora of horasDisponibles" [value]="hora">
+            {{ hora }}
+          </option>
+        </select>
       </div>
 
       <!-- Botón enviar -->

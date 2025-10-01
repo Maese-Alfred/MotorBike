@@ -15,6 +15,20 @@ class UsuarioController {
     }
   }
 
+  async getUsuarioByUid(req, res) {
+    try {
+      const { uid_firebase } = req.params; // Asume que el UID viene en los parámetros de la URL
+      const usuario = await usuarioModel.getUsuarioByUid(uid_firebase);
+      if (!usuario) {
+        return res.status(404).json({ error: 'Usuario no encontrado' });
+      }
+      res.status(200).json(usuario);
+    } catch (error) {
+      console.error('Error al obtener usuario por UID en el controlador:', error);
+      res.status(500).json({ error: 'Error al obtener usuario por UID' });
+    }
+  }
+
   async obtenerUsuarios(req, res) {
     try {
       const usuarios = await usuarioModel.getUsuariosWithRolesAndPermisos();

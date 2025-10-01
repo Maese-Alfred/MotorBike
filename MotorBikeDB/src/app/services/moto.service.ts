@@ -14,6 +14,11 @@ export class MotoService {
   obtenerMotos(): Observable<Moto[]> {
     return this.http.get<Moto[]>(this.apiUrl);
   }
+
+  agregarMotoACliente(cedula: string, moto: Moto): Observable<Moto> {
+  return this.http.post<Moto>(`${this.apiUrl}/cliente/${cedula}`, moto);
+}
+
   obtenerMotoPorPlaca(placa: string): Observable<Moto> {
     return this.http.get<Moto>(`${this.apiUrl}/${placa}`);
   }

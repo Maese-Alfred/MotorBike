@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import TrabajoMecanico from '../../../models/TrabajoMecanico';
 import { TrabajoMecanicoService } from '../../services/trabajo-mecanico.service';
+import { MecanicoService } from '../../services/mecanico.service'; // 👈 servicio para obtener mecánicos
 
 @Component({
   selector: 'app-historial-por-mecanico',
@@ -11,16 +12,33 @@ import { TrabajoMecanicoService } from '../../services/trabajo-mecanico.service'
   templateUrl: './historial-por-mecanico.component.html',
   styleUrl: './historial-por-mecanico.component.scss'
 })
-export class HistorialPorMecanicoComponent {
+export class HistorialPorMecanicoComponent implements OnInit {
   idMecanico: number | null = null;
   trabajos: TrabajoMecanico[] = [];
   buscado: boolean = false;
 
-  constructor(private trabajoService: TrabajoMecanicoService) {}
+  mecanicos: any[] = []; // Lista de mecánicos disponibles
+
+  constructor(
+    private trabajoService: TrabajoMecanicoService,
+    private mecanicoService: MecanicoService
+  ) {}
+
+  ngOnInit() {
+    // 👇 cargar todos los mecánicos cuando se monta el componente
+    this.mecanicoService.obtenerMecanicos().subscribe({
+      next: (data) => {
+        this.mecanicos = data;
+      },
+      error: (err) => {
+        console.error('Error cargando mecánicos:', err);
+      }
+    });
+  }
 
   buscarHistorialPorMecanico() {
     if (this.idMecanico === null) {
-      alert('Por favor, ingrese un ID de mecánico válido.');
+      alert('Por favor, seleccione un mecánico.');
       return;
     }
 

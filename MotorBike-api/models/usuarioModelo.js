@@ -52,17 +52,33 @@ class UsuarioModel {
     }
   }
 
-  async getUsuariosWithRolesAndPermisos() {
+ async obtenerRoles(){
     try {
-      const usuariosConRolesPermisos = await sql`
+      const usuarios = await sql`
+        SELECT u.*, r.nombre_rol_usuario
+        FROM usuarios u
+        JOIN roles_usuarios r ON u.id_rol_usuario = r.id_rol_usuario
+      `;
+      return usuarios;
+    } catch (error) {
+      console.error('Error al obtener usuarios con roles y permisos:', error);
+      throw error;
+    }
+  }
+
+  async getUsuarioByUid(uid_firebase) {
+    try {
+      const usuario = await sql`
         SELECT u.*, r.nombre_rol_usuario, p.nombre_boton, p.permitido
         FROM usuarios u
         JOIN roles_usuarios r ON u.id_rol_usuario = r.id_rol_usuario
         LEFT JOIN permisos_roles p ON r.id_rol_usuario = p.id_rol_usuario
+        WHERE u.uid_firebase = ${uid_firebase}
       `;
-      return usuariosConRolesPermisos;
+
+      return usuario.length > 0 ? usuario[0] : null;
     } catch (error) {
-      console.error('Error al obtener usuarios con roles y permisos:', error);
+      console.error('Error al obtener usuario por UID Firebase:', error);
       throw error;
     }
   }

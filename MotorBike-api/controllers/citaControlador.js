@@ -12,6 +12,18 @@ class CitaController {
         }
     }
     
+    async geCitaPorHora(req, res) {
+        try {
+            const { fecha_cita } = req.params;
+            const resultado = await CitaModel.geCitaPorHora(fecha_cita);
+            res.status(200).json(resultado);
+        } catch (error) {
+            console.error("Error al obtener cita por hora en el controlador:", error);
+            res.status(500).json({ error: "Error al obtener cita por hora" });
+        }
+
+    }
+    
     async confirmarCita(req, res) {
         try {
         const { id_cita } = req.params; // Asume que el ID de la cita viene en los parámetros de la URL

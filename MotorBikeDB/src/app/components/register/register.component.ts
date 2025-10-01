@@ -3,12 +3,12 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User } from "../../../models/User";
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, NgIf],
+  imports: [FormsModule, NgIf,NgFor],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
@@ -34,13 +34,21 @@ export class RegisterComponent {
   errorMessage: string = '';
   isLoading: boolean = false;
 
+  // 🔹 Reglas de contraseña
+  passwordRules = [
+    { label: 'Al menos 6 caracteres', validator: () => this.password.length >= 6, color: '#d32f2f' },
+    { label: 'Incluye mayúsculas', validator: () => /[A-Z]/.test(this.password), color: '#d32f2f' },
+    { label: 'Incluye minúsculas', validator: () => /[a-z]/.test(this.password), color: '#d32f2f' },
+    { label: 'Incluye números', validator: () => /[0-9]/.test(this.password), color: '#d32f2f' },
+    { label: 'Incluye caracteres especiales', validator: () => /[!¡@#$%^&*(),.?":{}|<>]/.test(this.password), color: '#d32f2f' }
+  ];
+
   constructor(
     private authService: AuthService,
     private router: Router
   ) {}
 
   async handleSubmit(): Promise<void> {
-    // Marcar todos los campos como touched para mostrar errores
     if (this.form) {
       Object.keys(this.form.controls).forEach(key => {
         this.form.controls[key].markAsTouched();
@@ -53,22 +61,18 @@ export class RegisterComponent {
     this.errorMessage = '';
 
     try {
-      // 🔹 Crear usuario en Firebase + guardar en backend
       const fbUser = await this.authService.register(
         this.newUser.email_usuario,
         this.password,
         this.newUser
       );
 
-      // Validar UID
       if (!fbUser || !fbUser.uid) {
         this.errorMessage = 'No se pudo obtener el UID de Firebase';
         return;
       }
 
       console.log('Usuario registrado correctamente:', fbUser.uid);
-
-      // 🔹 Redirigir
       this.router.navigate(['/client-register']);
 
     } catch (error: any) {
@@ -79,15 +83,18 @@ export class RegisterComponent {
   }
 
   togglePasswordVisibility(field: 'password' | 'confirmPassword'): void {
-    if (field === 'password') {
-      this.showPassword = !this.showPassword;
-    } else {
-      this.showConfirmPassword = !this.showConfirmPassword;
-    }
+    if (field === 'password') this.showPassword = !this.showPassword;
+    else this.showConfirmPassword = !this.showConfirmPassword;
   }
 
   validatePasswordMatch(): boolean {
     return this.password === this.confirmPassword;
+  }
+
+  updatePasswordRuleColors(): void {
+    this.passwordRules.forEach(rule => {
+      rule.color = rule.validator() ? '#4CAF50' : '#d32f2f';
+    });
   }
 
   private validateForm(): boolean {

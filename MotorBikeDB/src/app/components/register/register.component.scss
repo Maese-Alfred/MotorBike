@@ -20,11 +20,29 @@
     }
   }
   
-  input {
-    padding-right: 40px;
-    width: 100%;
+input {
+  flex: 1;
+  padding: 0.6rem 0.8rem; /* más cómodo */
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+
+  &:focus {
+    border-color: #633820;
+    box-shadow: 0 0 6px rgba(99,56,32,0.25);
+    outline: none;
+  }
+
+  &.valid {
+    border-color: #28a745; /* verde si es válido */
+  }
+
+  &.invalid {
+    border-color: #d32f2f; /* rojo si es inválido */
   }
 }
+} /* <-- Add this closing bracket for .password-container */
 
 .input-error {
   color: #d32f2f;
@@ -100,6 +118,26 @@
       &:hover {
         background-color: #391c0f;
       }
+    }
+  }
+}
+
+.password-rules {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+
+  span {
+    margin-bottom: 0.2rem;
+    transition: color 0.3s;
+
+    &.valid {
+      color: #28a745; /* verde si cumple */
+    }
+
+    &.invalid {
+      color: #d32f2f; /* rojo si no cumple */
     }
   }
 }

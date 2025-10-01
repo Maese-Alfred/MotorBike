@@ -1,4 +1,4 @@
-import { Component,EventEmitter,Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -26,5 +26,4 @@ export class CreateClientComponent {
   emitChange() {
     this.clienteChange.emit(this.cliente);
   }
-
 }

@@ -53,6 +53,18 @@ class CitaModel {
       throw error;
     }
   }
+  
+  async geCitaPorHora(fecha_cita) {
+    try{
+      const result = await sql`
+        SELECT * FROM citas WHERE fecha_cita = ${fecha_cita}
+      `;
+      return result;
+    } catch (error) {
+      console.error('Error al obtener la cita por hora:', error);
+      throw error;
+    }
+  }
 
   // Obtener todas las citas (con cliente, moto y servicio)
   async obtenerCitasConDetalles() {

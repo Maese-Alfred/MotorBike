@@ -12,6 +12,18 @@ class MotoController {
         }
     }
 
+    async agregarMotoACliente(req, res) {
+        try {
+            const { cedula_cliente } = req.params;
+            const { placa_moto } = req.body;
+            const motoAgregada = await MotoModel.agregarMotoACliente(cedula_cliente, placa_moto);
+            res.status(201).json(motoAgregada);
+        } catch (error) {
+            console.error('Error al agregar la moto al cliente:', error);
+            res.status(500).json({ error: 'Error al agregar la moto al cliente' });
+        }
+    }
+
     async obtenerMotos(req, res) {
         try {
             const motos = await MotoModel.obtenerMotos();

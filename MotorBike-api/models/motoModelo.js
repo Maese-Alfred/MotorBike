@@ -15,6 +15,21 @@ class MotoModel {
             throw error;
         }
     }
+
+    async agregarMotoACliente(cedula_cliente, placa_moto) {
+        try {
+            const result = await sql`
+                INSERT INTO motos (cedula_cliente, placa_moto)
+                VALUES (${cedula_cliente}, ${placa_moto})
+                RETURNING *
+            `;
+            return result[0];
+        } catch (error) {
+            console.error('Error al agregar la moto al cliente:', error);
+            throw error;
+        }
+    }
+
     async obtenerMotos() {
         try {
             const result = await sql`

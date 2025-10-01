@@ -11,5 +11,6 @@ router.put("/:id_cita/confirmar", CitaController.confirmarCita);
 
 // Obtener todas las citas con detalles de cliente, moto y servicio
 router.get("/detalles", CitaController.obtenerCitasConDetalles);
+router.get("/hora/:fecha_cita", CitaController.geCitaPorHora);
 
 export default router;
