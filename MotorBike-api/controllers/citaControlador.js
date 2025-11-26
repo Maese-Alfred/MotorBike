@@ -12,10 +12,10 @@ class CitaController {
         }
     }
     
-    async geCitaPorHora(req, res) {
+    async getCitasPorHora(req, res) {
         try {
             const { fecha_cita } = req.params;
-            const resultado = await CitaModel.geCitaPorHora(fecha_cita);
+            const resultado = await CitaModel.getCitasPorHora(fecha_cita);
             res.status(200).json(resultado);
         } catch (error) {
             console.error("Error al obtener cita por hora en el controlador:", error);

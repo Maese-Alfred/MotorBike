@@ -26,11 +26,11 @@ export class AssignMechanicComponent implements OnInit {
     this.obtenerMecanicos();
   }
 
-  obtenerOrdenes() {
-    this.ordenService.obtenerOrdenes().subscribe(ordenes => {
-      this.ordenes = ordenes;
-    });
-  }
+obtenerOrdenes() {
+  this.ordenService.obtenerOrdenes().subscribe(ordenes => {
+    this.ordenes = ordenes.filter(o => !o.id_mecanico || o.id_mecanico === null);
+  });
+}
   obtenerMecanicos(){
     this.mecanicoService.obtenerMecanicos().subscribe(mecanicos => {
       this.mecanicos = mecanicos;

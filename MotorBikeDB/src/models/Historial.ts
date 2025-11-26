@@ -19,4 +19,6 @@ export default interface Historial {
   fecha_fin_servicio?: string;
   descripcion_trabajo?: string;
   detalles_adicionales?: string;
+  mecanico_nombre?: string; // Campo adicional para mostrar el nombre completo del mecánico
+  fecha_inicio_cita?: string; // Campo adicional para mostrar la fecha de inicio de la cita
 }

@@ -27,25 +27,26 @@ export class LoginComponent {
   isModalOpen = false; 
   forgotEmail = '';
 
+  // 🔹 Variables para bloqueo
+  intentosFallidos: number = 0;
+  maxIntentos: number = 5;
+  cuentaBloqueada: boolean = false;
+
   async onSubmit(): Promise<void> {
-    if (this.loginForm.valid) {
+    if (this.loginForm.valid && !this.cuentaBloqueada) {
       const { email, password } = this.loginForm.value;
 
       try {
-        // 🔹 1. Login en Firebase
         const firebaseUser = await this.authService.login(email!, password!);
 
         if (!firebaseUser) throw new Error('No se pudo iniciar sesión');
 
-        // 🔹 2. Obtener usuario desde backend usando UID de Firebase
         const usuario = await this.authService.getUsuarioByUid(firebaseUser.uid).toPromise();
 
         if (!usuario) throw new Error('Usuario no encontrado en backend');
 
-        // 🔹 3. Guardar usuario en localStorage
         localStorage.setItem('usuario', JSON.stringify(usuario));
 
-        // 🔹 4. Redirigir según rol (puedes personalizar rutas)
         switch (usuario.id_rol_usuario) {
           case 1:
             this.router.navigate(['/client-register']);
@@ -54,12 +55,30 @@ export class LoginComponent {
             this.router.navigate(['/turnos']);
             break;
           default:
-            this.router.navigate(['/']); // fallback
+            this.router.navigate(['/']); 
         }
+
+        // ✅ Reiniciar intentos si inicia sesión correctamente
+        this.intentosFallidos = 0;
 
       } catch (error: any) {
         console.error(error);
         this.errorMessage = this.getErrorMessage(error.code || error.message);
+
+        // 🚨 Contador de intentos fallidos
+        this.intentosFallidos++;
+        if (this.intentosFallidos >= this.maxIntentos) {
+          this.cuentaBloqueada = true;
+          this.loginForm.controls['password'].disable();
+          this.errorMessage = 'Cuenta bloqueada por demasiados intentos. Intenta más tarde.';
+
+          // 🔓 (Opcional) desbloqueo automático tras 30 segundos
+          setTimeout(() => {
+            this.cuentaBloqueada = false;
+            this.loginForm.controls['password'].enable();
+            this.intentosFallidos = 0;
+          }, 30000);
+        }
       }
     }
   }
@@ -78,7 +97,7 @@ export class LoginComponent {
     return errorMessages[errorCode] || 'Error al iniciar sesión';
   }
 
-  // Modal de recuperación de contraseña
+  // Modal recuperación de contraseña
   openForgotPasswordModal(event: Event): void {
     event.preventDefault();
     this.isModalOpen = true;

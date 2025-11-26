@@ -54,7 +54,7 @@ class CitaModel {
     }
   }
   
-  async geCitaPorHora(fecha_cita) {
+  async getCitasPorHora(fecha_cita) {
     try{
       const result = await sql`
         SELECT * FROM citas WHERE fecha_cita = ${fecha_cita}

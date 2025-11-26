@@ -50,35 +50,25 @@ class HistorialModel {
   }
 
   // Registrar resumen final de mantenimiento
-  async registrarHistorialMantenimiento({ id_orden, detalles_historial }) {
-    try {
-      const result = await sql`
-        INSERT INTO historial_mantenimientos (id_orden, fecha_historial, detalles_historial)
-        VALUES (${id_orden}, NOW(), ${detalles_historial})
-        RETURNING *
-      `;
-      return result[0];
-    } catch (error) {
-      console.error('Error al registrar el historial de mantenimiento:', error);
-      throw error;
-    }
-  }
+async registrarTrabajoMecanico({ id_mecanico, id_orden, fecha_inicio_servicio, fecha_fin_servicio, descripcion_trabajo, detalles_adicionales }) {
+  return await sql`
+    INSERT INTO historial_servicios_mecanicos (
+      id_mecanico, id_orden, fecha_inicio_servicio, fecha_fin_servicio, descripcion_trabajo, detalles_adicionales
+    )
+    VALUES (${id_mecanico}, ${id_orden}, ${fecha_inicio_servicio}, ${fecha_fin_servicio}, ${descripcion_trabajo}, ${detalles_adicionales})
+    RETURNING *
+  `;
+}
 
-  // Registrar trabajo de un mecánico
-  async registrarTrabajoMecanico({ id_mecanico, id_orden, fecha_inicio_servicio, fecha_fin_servicio, descripcion_trabajo, detalles_adicionales }) {
-    try {
-      const result = await sql`
-        INSERT INTO historial_servicios_mecanicos (id_mecanico, id_orden, fecha_inicio_servicio, fecha_fin_servicio, descripcion_trabajo, detalles_adicionales)
-        VALUES (${id_mecanico}, ${id_orden}, ${fecha_inicio_servicio}, ${fecha_fin_servicio}, ${descripcion_trabajo}, ${detalles_adicionales})
-        RETURNING *
-      `;
-      return result[0];
-    } catch (error) {
-      console.error('Error al registrar el trabajo del mecánico:', error);
-      throw error;
-    }
-  }
-  
+// ✅ Registra un historial general de mantenimiento
+async registrarHistorialMantenimiento({ id_orden, fecha_historial, detalles_historial }) {
+  return await sql`
+    INSERT INTO historial_mantenimientos (id_orden, fecha_historial, detalles_historial)
+    VALUES (${id_orden}, ${fecha_historial}, ${detalles_historial})
+    RETURNING *
+  `;
+}
+
   async obtenerHistorialPorMecanico(id_mecanico) {
     try {
       const result = await sql`
@@ -123,6 +113,8 @@ class HistorialModel {
       throw error;
     }
 }
+
+
   
 }
 

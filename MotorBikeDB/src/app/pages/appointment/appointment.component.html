@@ -1,15 +1,23 @@
 <div class="main">
   <app-nav-bar></app-nav-bar>
 
-  <button (click)="toggleComponent('create')">Crear Cita</button>
-  <app-create-appointment *ngIf="showCreate" />
+  <h2>Gestión de Citas</h2>
 
-  <button (click)="toggleComponent('check')">Revisar Cita</button>
-  <app-check-appointment *ngIf="showCheck" />
+  <div class="action-buttons">
+    <button [class.active]="showCreate" (click)="toggleComponent('create')">📅 Crear Cita</button>
+    <button [class.active]="showCheck" (click)="toggleComponent('check')">🔍 Revisar Cita</button>
+    <button [class.active]="showAssign" (click)="toggleComponent('assign')">👨‍🔧 Asignar Mecánico</button>
+    <button class="secondary" (click)="abrirCitas()">📋 Ver Citas Recientes</button>
+  </div>
 
-  <button (click)="toggleComponent('assign')">Asignar Mecánico</button>
-  <app-assign-mechanic *ngIf="showAssign" />
+  <div class="component-panel">
+    <app-create-appointment *ngIf="showCreate"></app-create-appointment>
+    <app-check-appointment *ngIf="showCheck"></app-check-appointment>
+    <app-assign-mechanic *ngIf="showAssign"></app-assign-mechanic>
+  </div>
 
-  <button (click)="toggleComponent('register')">Registrar Trabajo</button>
-  <app-registar-trabajo-mecanico *ngIf="showRegister" />
+  <app-citas-recientes 
+    [visible]="mostrarCitas" 
+    (cerrar)="cerrarCitas()">
+  </app-citas-recientes>
 </div>

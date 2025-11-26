@@ -5,4 +5,5 @@ export default interface Cita {
     id_servicio: number;
     fecha_cita: string;
     confirmado?: string;
+    estado_cita?: string;
 }

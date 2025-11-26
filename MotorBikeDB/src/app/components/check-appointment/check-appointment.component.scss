@@ -1,52 +1,98 @@
 .citas__container {
-    padding: 1rem;
-    min-height: 60vh;
-    background: linear-gradient(to bottom, #d6a12d, darken(#fa9f27, 15%));
-    border-radius: 0.3rem;
-    width: 80%;
-    margin: 10vh auto;
-    overflow-x: auto; /* Agregamos scroll horizontal si la tabla se desborda */
+  background: linear-gradient(to bottom, #d6a12d, darken(#fa9f27, 15%));
+  border-radius: 0.6rem;
+  overflow-x: auto;
+  color: #fff;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
 .citas__title {
-    font-size: 2rem;
-    text-align: center;
-    font-weight: 600;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
 }
 
 .citas__table {
-    display: table; /* Cambiamos a display: table para usar table-layout */
-    border-collapse: collapse; /* Opcional: Colapsa los bordes de las celdas */
-    margin-top: 2rem;
-    table-layout: fixed; /* Forzamos un layout fijo para controlar el ancho */
-}
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.1);
 
-.citas__table--header,
-.citas__table--body {
-    display: table-row-group; /* Mantenemos la estructura semántica */
-}
+  th,
+  td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
 
-.citas__table--header--row {
+  thead {
+    background-color: #412b03;
+  }
+
+  tbody tr {
+    transition: background 0.3s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  button {
     background-color: #412b03;
     color: #fff;
-}
-.citas__table--header--row,
-.citas__table--body tr {
-    display: table-row;
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: lighten(#412b03, 10%);
+      transform: translateY(-2px);
+    }
+  }
 }
 
-.citas__table--header--row th,
-.citas__table--body tr td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd; 
+.citas__loading,
+.citas__empty {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #fff;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
-/* Opcional: Define anchos para las columnas si usas table-layout: fixed */
-.citas__table--header--row th:nth-child(1) { width: 5%; } /* ID */
-.citas__table--header--row th:nth-child(2) { width: 20%; } /* Cliente */
-.citas__table--header--row th:nth-child(3) { width: 15%; } /* Moto */
-.citas__table--header--row th:nth-child(4) { width: 20%; } /* Servicio */
-.citas__table--header--row th:nth-child(5) { width: 10%; } /* Fecha */
-.citas__table--header--row th:nth-child(6) { width: 15%; } /* Confirmada */
-.citas__table--header--row th:nth-child(7) { width: 15%; } /* Acciones */
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #fff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 1rem auto;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

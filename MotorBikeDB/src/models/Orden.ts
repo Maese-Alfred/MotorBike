@@ -8,4 +8,5 @@ export default interface Orden {
   costo_final_orden?: number | null;
   observaciones_orden?: string | null;
   id_cita?: number | null; // Si quieres relacionar la orden con la cita que la originó
+  id_mecanico?: number | null; // Si quieres relacionar la orden con el mecánico asignado
 }

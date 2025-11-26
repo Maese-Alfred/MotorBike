@@ -21,7 +21,11 @@ export class HistorialService {
     return this.http.post<Historial>(`${this.apiUrl}/historial/${id}`, historial);
   }
 
-  registrarTrabajoMecanico(id: number,historial: Historial): Observable<Historial> {
-    return this.http.post<Historial>(`${this.apiUrl}/historial/trabajo-mecanico${id}`, historial);
-  }
+registrarTrabajoMecanico(id: number, historial: Historial): Observable<Historial> {
+  return this.http.post<Historial>(`${this.apiUrl}/historial/trabajo-mecanico/${id}`, historial);
+}
+
+finalizarMantenimiento(id: number, historial: Historial): Observable<Historial> {
+  return this.http.post<Historial>(`${this.apiUrl}/ordenes/finalizar-mantenimiento/${id}`, historial);
+}
 }

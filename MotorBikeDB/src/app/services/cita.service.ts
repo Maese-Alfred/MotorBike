@@ -23,7 +23,7 @@ export class CitaService {
     return this.http.put<any>(`${this.apiUrl}/citas/${id}/confirmar`, {}); // Usamos la apiUrl base y añadimos /citas/:id
   }
 
-  geCitasPorHora(hora: string): Observable<Cita[]> {
-    return this.http.get<Cita[]>(`${this.apiUrl}/citas/hora/${hora}`); // Usamos la apiUrl base y añadimos /citas/hora/:hora
-  }
+  getCitasPorHora(hora: string): Observable<Cita[]> {
+  return this.http.get<Cita[]>(`${this.apiUrl}/citas/hora/${hora}`);
+}
 }
